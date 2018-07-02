@@ -1,0 +1,23 @@
+-locale
+'en_US'
+-encoding
+'UTF-8'
+-public
+-sourcepath
+'K:/yunDisk/rzxDisk/software/developTool/luciad-webp-imageio-57d9633ec7d5/thumbnailator-master/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2018. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'K:/yunDisk/rzxDisk/software/developTool/luciad-webp-imageio-57d9633ec7d5/thumbnailator-master/javadoc'
+-docencoding
+'UTF-8'
+-doctitle
+'Thumbnailator API Documentation (Version 2.0.0)'
+-linkoffline
+'http://docs.oracle.com/javase/1.5.0/docs/api' 'K:/yunDisk/rzxDisk/software/developTool/luciad-webp-imageio-57d9633ec7d5/thumbnailator-master/target/javadoc-bundle-options'
+-version
+-windowtitle
+'Thumbnailator API Documentation (Version 2.0.0)'
