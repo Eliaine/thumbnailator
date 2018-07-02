@@ -43,18 +43,23 @@ public class WatermarkText implements ImageFilter {
 	private Color color = Color.gray;
 
 	/**
-	 * Instantiates a filter which applies a watermark to an image.
 	 * 
 	 * @param position
 	 *            The position of the watermark.
-	 * @param watermarkImg
-	 *            The watermark image.
+	 * @param logoText
+	 *            文本信息
 	 * @param opacity
 	 *            The opacity of the watermark.
 	 *            <p>
 	 *            The value should be between {@code 0.0f} and {@code 1.0f},
 	 *            where {@code 0.0f} is completely transparent, and {@code 1.0f}
 	 *            is completely opaque.
+	 * @param degree
+	 *            旋转度
+	 * @param font
+	 *            字体信息
+	 * @param color
+	 *            颜色
 	 */
 	public WatermarkText(Position position, String logoText, float opacity, Integer degree, Font font, Color color) {
 		if (position == null) {
@@ -78,11 +83,12 @@ public class WatermarkText implements ImageFilter {
 	/**
 	 * 获取水印文字总长度
 	 * 
-	 * @paramwaterMarkContent水印的文字
-	 * @paramg
-	 * @return水印文字总长度
+	 * @param c
+	 *            文字
+	 * @param g
+	 *            图片
+	 * @return 文字长度
 	 */
-
 	public int getCharLen(char c, Graphics2D g) {
 		return g.getFontMetrics(g.getFont()).charWidth(c);
 	}

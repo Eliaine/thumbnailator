@@ -15,130 +15,118 @@ import com.surfilter.act.thumbnailator.util.BufferedImages;
  * @author coobird
  *
  */
-public final class Pipeline implements ImageFilter
-{
+public final class Pipeline implements ImageFilter {
 	/**
 	 * A list of image filters to apply.
 	 */
 	private final List<ImageFilter> filtersToApply;
-	
+
 	/**
-	 * An unmodifiable list of image filters to apply.
-	 * Used by the {@link #getFilters()} method.
+	 * An unmodifiable list of image filters to apply. Used by the
+	 * {@link #getFilters()} method.
 	 * 
-	 * This object is created by Collections.unmodifiableList which provides
-	 * an unmodifiable view of the original list.
+	 * This object is created by Collections.unmodifiableList which provides an
+	 * unmodifiable view of the original list.
 	 * 
 	 * Therefore, any changes to the original list will also be "visible" from
 	 * this list as well.
 	 */
 	private final List<ImageFilter> unmodifiableFiltersToApply;
-	
+
 	/**
 	 * Instantiates a new {@link Pipeline} with no image filters to apply.
 	 */
-	public Pipeline()
-	{
+	public Pipeline() {
 		this(Collections.<ImageFilter>emptyList());
 	}
-	
+
 	/**
 	 * Instantiates a new {@link Pipeline} with an array of {@link ImageFilter}s
 	 * to apply.
 	 * 
-	 * @param filters		An array of {@link ImageFilter}s to apply.
+	 * @param filters
+	 *            An array of {@link ImageFilter}s to apply.
 	 */
-	public Pipeline(ImageFilter... filters)
-	{
+	public Pipeline(ImageFilter... filters) {
 		this(Arrays.asList(filters));
 	}
-	
+
 	/**
 	 * Instantiates a new {@link Pipeline} with a list of {@link ImageFilter}s
 	 * to apply.
 	 * 
-	 * @param filters		A list of {@link ImageFilter}s to apply.
+	 * @param filters
+	 *            A list of {@link ImageFilter}s to apply.
 	 */
-	public Pipeline(List<ImageFilter> filters)
-	{
-		if (filters == null)
-		{
-			throw new NullPointerException("Cannot instantiate with a null" +
-			"list of image filters.");
+	public Pipeline(List<ImageFilter> filters) {
+		if (filters == null) {
+			throw new NullPointerException("Cannot instantiate with a null" + "list of image filters.");
 		}
-		
+
 		filtersToApply = new ArrayList<ImageFilter>(filters);
-		unmodifiableFiltersToApply =
-			Collections.unmodifiableList(filtersToApply);
+		unmodifiableFiltersToApply = Collections.unmodifiableList(filtersToApply);
 	}
-	
+
 	/**
 	 * Adds an {@code ImageFilter} to the pipeline.
 	 */
-	public void add(ImageFilter filter)
-	{
-		if (filter == null)
-		{
+	public void add(ImageFilter filter) {
+		if (filter == null) {
 			throw new NullPointerException("An image filter must not be null.");
 		}
-		
+
 		filtersToApply.add(filter);
 	}
-	
+
 	/**
-	 * Adds an {@code ImageFilter} to the beginning of the pipeline.
+	 * Adds an filter to the beginning of the pipeline.
+	 * 
+	 * @param filter
+	 *            过滤器
 	 */
-	public void addFirst(ImageFilter filter)
-	{
-		if (filter == null)
-		{
+	public void addFirst(ImageFilter filter) {
+		if (filter == null) {
 			throw new NullPointerException("An image filter must not be null.");
 		}
-		
+
 		filtersToApply.add(0, filter);
 	}
-	
+
 	/**
 	 * Adds a {@code List} of {@code ImageFilter}s to the pipeline.
 	 * 
-	 * @param filters			A list of filters to add to the pipeline.
+	 * @param filters
+	 *            A list of filters to add to the pipeline.
 	 */
-	public void addAll(List<ImageFilter> filters)
-	{
-		if (filters == null)
-		{
+	public void addAll(List<ImageFilter> filters) {
+		if (filters == null) {
 			throw new NullPointerException("A list of image filters must not be null.");
 		}
-		
+
 		filtersToApply.addAll(filters);
 	}
-	
+
 	/**
 	 * Returns a list of {@link ImageFilter}s which will be applied by this
 	 * {@link Pipeline}.
 	 * 
-	 * @return					A list of filters which are applied by this
-	 * 							pipeline.
+	 * @return A list of filters which are applied by this pipeline.
 	 */
-	public List<ImageFilter> getFilters()
-	{
+	public List<ImageFilter> getFilters() {
 		return unmodifiableFiltersToApply;
 	}
-	
-	public BufferedImage apply(BufferedImage img)
-	{
-		if (filtersToApply.isEmpty())
-		{
+
+	public BufferedImage apply(BufferedImage img) {
+		if (filtersToApply.isEmpty()) {
 			return img;
 		}
-		
+
 		BufferedImage image = BufferedImages.copy(img);
-		
-		for (ImageFilter filter : filtersToApply)
-		{
+
+		for (ImageFilter filter : filtersToApply) {
 			image = filter.apply(image);
 		}
-		
+
 		return image;
 	}
 }

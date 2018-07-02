@@ -32,7 +32,7 @@ public class Watermark implements ImageFilter {
 	private final float opacity;
 
 	/**
-	 * ��ת��
+	 * The opacity of the watermark.
 	 */
 	private final Integer degree;
 
@@ -44,6 +44,8 @@ public class Watermark implements ImageFilter {
 	 * @param watermarkImg
 	 *            The watermark image.
 	 * @param opacity
+	 *            The opacity of the watermark.
+	 * @param degree
 	 *            The opacity of the watermark.
 	 *            <p>
 	 *            The value should be between {@code 0.0f} and {@code 1.0f},
